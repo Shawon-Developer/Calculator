@@ -25,7 +25,11 @@ function calculate(firstOperand, secondOperand, operator) {
 }
 
 function inputDegit(degit) {
-  if (calculator.waitingForSecondOperand === true) {
+  const currentValue = calculator.displayValue.toString();
+
+  if (currentValue.length === 14) {
+    return;
+  } else if (calculator.waitingForSecondOperand === true) {
     calculator.displayValue = degit;
     calculator.waitingForSecondOperand = false;
   } else {
@@ -37,12 +41,13 @@ function inputDegit(degit) {
 function inputDecemal(dot) {
   const currentValue = calculator.displayValue.toString();
 
-  if (calculator.waitingForSecondOperand === true) {
+  if (currentValue.length === 14) {
+    return;
+  } else if (calculator.waitingForSecondOperand === true) {
     calculator.displayValue = "0.";
     calculator.waitingForSecondOperand = false;
     return;
   } else if (currentValue.indexOf(".") === -1) {
-    // If the current value does not contain a decimal point, append the dot
     calculator.displayValue += dot;
   }
 }
@@ -91,6 +96,19 @@ function resetCalculator() {
   calculator.operator = null;
 }
 
+function deleteKey() {
+  calculator.displayValue = calculator.displayValue.toString().slice(0, -1);
+  if (calculator.displayValue === "") {
+    calculator.displayValue = 0;
+  }
+
+  if (calculator.waitingForSecondOperand) {
+    calculator.firstOperand = parseFloat(calculator.displayValue);
+    calculator.waitingForSecondOperand = false;
+    calculator.operator = null;
+  }
+}
+
 document.querySelectorAll("button").forEach(function (button) {
   button.addEventListener("click", function (event) {
     const { target } = event;
@@ -108,10 +126,7 @@ document.querySelectorAll("button").forEach(function (button) {
       updateDisplay();
       return;
     } else if (target.classList.contains("delete-key")) {
-      calculator.displayValue = calculator.displayValue.toString().slice(0, -1);
-      if (calculator.displayValue === "") {
-        calculator.displayValue = 0;
-      }
+      deleteKey();
       updateDisplay();
       return;
     } else if (target.classList.contains("all-clear")) {

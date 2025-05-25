@@ -5,8 +5,8 @@
   --dark-primary-text-color: #efefef;
   --primary-border-radius: 0.5vw;
   --calculator-padding: clamp(10px, calc(0.5rem + 1vw), 1000px);
-  --calculator-title-font-size: clamp(1.5rem, calc(0.5rem + 2vw), 1000px);
-  --input-display-font-size: clamp(1.5rem, calc(0.5rem + 2vw), 1000px);
+  --calculator-title-font-size: clamp(24px, calc(0.5rem + 2vw), 1000px);
+  --input-display-font-size: clamp(35px, calc(1rem + 2.5vw), 1000px);
   --btn-gap: 1vw;
   --btn-font-size: clamp(1rem, calc(0.5rem + 1.2vw), 1000px);
   --light-primary-box-shadow: 0 0 0.1vw #000, 0 0 0.2vw #000, 0 0 0.3vw #000;
@@ -81,9 +81,11 @@ body#dark .calculator-container {
   height: 100%;
   background-color: transparent;
   color: var(--dark-primary-text-color);
+  justify-content: end;
   font-size: var(--input-display-font-size);
-  text-align: right;
   border: none;
+  padding: 0 0.5vw;
+  overflow: hidden;
 }
 
 body#light .screen-container {
@@ -145,4 +147,37 @@ body#dark button {
   background-color: var(--dark-primary-background-color);
   color: var(--dark-primary-text-color);
   box-shadow: var(--dark-primary-box-shadow);
+}
+
+/* Responsiveness */
+@media screen and (max-width: 1024px) {
+  .calculator-container {
+    width: 35%;
+  }
+}
+
+@media screen and (max-width: 864px) {
+  .calculator-container {
+    width: 45%;
+    height: 80%;
+  }
+}
+
+@media screen and (max-width: 728px) {
+  .calculator-container {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .calculator-container {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 498px) {
+  .calculator-container {
+    width: 75%;
+    height: 70%;
+  }
 }
