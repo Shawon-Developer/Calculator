@@ -3,22 +3,20 @@
   --dark-primary-background-color: #111111;
   --light-primary-text-color: #111111;
   --dark-primary-text-color: #efefef;
-  --primary-border-radius: .5vw;
+  --primary-border-radius: 0.5vw;
   --calculator-padding: clamp(10px, calc(0.5rem + 1vw), 1000px);
   --calculator-title-font-size: clamp(1.5rem, calc(0.5rem + 2vw), 1000px);
+  --input-display-font-size: clamp(1.5rem, calc(0.5rem + 2vw), 1000px);
   --btn-gap: 1vw;
   --btn-font-size: clamp(1rem, calc(0.5rem + 1.2vw), 1000px);
-  --light-primary-box-shadow: 0 0 .1vw #000, 0 0 .2vw #000, 0 0 .3vw #000;
-  --dark-primary-box-shadow: 0 0 .1vw #fff, 0 0 .2vw #fff, 0 0 .3vw #fff;
+  --light-primary-box-shadow: 0 0 0.1vw #000, 0 0 0.2vw #000, 0 0 0.3vw #000;
+  --dark-primary-box-shadow: 0 0 0.1vw #fff, 0 0 0.2vw #fff, 0 0 0.3vw #fff;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-body {
   font-family: "WDXL Lubrifont TC", sans-serif;
 }
 
@@ -74,7 +72,18 @@ body#dark .calculator-container {
 .screen-container {
   width: 100%;
   height: 20%;
+  padding: var(--calculator-padding) 0;
   border-radius: var(--primary-border-radius);
+}
+
+.calculator-screen {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  color: var(--dark-primary-text-color);
+  font-size: var(--input-display-font-size);
+  text-align: right;
+  border: none;
 }
 
 body#light .screen-container {
@@ -114,7 +123,7 @@ button {
 }
 
 button:active {
-  transform: scale(0.90);
+  transform: scale(0.9);
 }
 
 .btn-row:first-child button:first-child {
